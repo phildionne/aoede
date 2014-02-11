@@ -1,6 +1,8 @@
+require 'aoede/attributes/base'
 module Aoede
 
   class Track
+    include Aoede::Attributes::Base
     attr_accessor :filename
 
     # @param attributes [Hash]
