@@ -22,6 +22,17 @@ module Aoede
       self
     end
 
+    # @return [Hash]
+    def to_hash
+      hash = Hash.new
+      attributes.each do |attr|
+        hash[attr] = public_send(attr)
+      end
+
+      hash
+    end
+    alias_method :to_h, :to_hash
+
     # @param filename [String]
     def filename=(filename)
       raise ArgumentError, "No such file: #{filename}" unless File.exist?(filename)
