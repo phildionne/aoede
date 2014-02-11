@@ -4,6 +4,7 @@ module Aoede
       extend ActiveSupport::Concern
 
       included do
+        self.attributes += [:image]
       end
 
       def image

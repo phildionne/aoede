@@ -4,6 +4,7 @@ module Aoede
       extend ActiveSupport::Concern
 
       included do
+        self.attributes += [:composer, :sort_title, :sort_artist, :sort_album_artist, :sort_composer]
       end
 
       # @return [String, Nil]

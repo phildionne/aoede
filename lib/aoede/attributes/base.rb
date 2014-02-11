@@ -4,6 +4,8 @@ module Aoede
       extend ActiveSupport::Concern
 
       included do
+        self.attributes += [:artist, :album_artist, :comment, :genre, :release,
+                   :release_year, :title, :tracknum]
       end
 
       # @return [String, Nil]

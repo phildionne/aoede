@@ -6,6 +6,9 @@ require 'aoede/attributes/echonest'
 module Aoede
 
   class Track
+    class_attribute :attributes, instance_writer: false
+    self.attributes = Array.new
+
     include Aoede::Attributes::Base
     include Aoede::Attributes::Image
     include Aoede::Attributes::Itunes
