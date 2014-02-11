@@ -13,12 +13,9 @@ module Aoede
 
     attr_accessor :filename
 
-    # @param attributes [Hash]
-    def initialize(attributes = {})
-      attributes.each do |attr, value|
-        self.public_send("#{attr}=", value)
-      end
-
+    # @param filename [String]
+    def initialize(filename)
+      self.filename = filename
       self
     end
 
