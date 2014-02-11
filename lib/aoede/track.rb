@@ -1,11 +1,13 @@
 require 'aoede/attributes/base'
 require 'aoede/attributes/itunes'
+require 'aoede/attributes/echonest'
 
 module Aoede
 
   class Track
     include Aoede::Attributes::Base
     include Aoede::Attributes::Itunes
+    include Aoede::Attributes::EchoNest
 
     attr_accessor :filename
 
