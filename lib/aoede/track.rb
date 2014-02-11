@@ -1,8 +1,12 @@
 require 'aoede/attributes/base'
+require 'aoede/attributes/itunes'
+
 module Aoede
 
   class Track
     include Aoede::Attributes::Base
+    include Aoede::Attributes::Itunes
+
     attr_accessor :filename
 
     # @param attributes [Hash]
