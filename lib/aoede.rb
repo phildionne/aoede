@@ -1,3 +1,4 @@
+require 'active_support/concern'
 require 'taglib'
 
 require 'aoede/track'

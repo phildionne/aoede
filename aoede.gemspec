@@ -17,5 +17,6 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.rubyforge_project = '[none]'
 
+  s.add_dependency 'activesupport', '>= 4.0'
   s.add_dependency 'taglib-ruby'
 end
