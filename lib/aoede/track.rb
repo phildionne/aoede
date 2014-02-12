@@ -11,17 +11,6 @@ module Aoede
 
     # @param filename [String]
     def initialize(filename)
-
-    # @return [Hash]
-    def to_hash
-      hash = Hash.new
-      attributes.each do |attr|
-        hash[attr] = public_send(attr)
-      end
-
-      hash
-    end
-    alias_method :to_h, :to_hash
       raise ArgumentError, "No such file: #{filename}" unless File.exist?(filename)
       @filename = filename
 
@@ -58,5 +47,11 @@ module Aoede
     def save
       audio.save && audio.close
     end
+
+    # @return [Hash]
+    def to_hash
+      attributes
+    end
+    alias_method :to_h, :to_hash
   end
 end
