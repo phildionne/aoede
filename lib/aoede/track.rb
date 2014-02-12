@@ -1,7 +1,6 @@
 require 'aoede/attributes/base'
 require 'aoede/attributes/image'
 require 'aoede/attributes/itunes'
-require 'aoede/attributes/echonest'
 
 module Aoede
 
