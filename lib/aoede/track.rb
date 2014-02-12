@@ -1,25 +1,16 @@
 require 'aoede/attributes/base'
 require 'aoede/attributes/image'
-require 'aoede/attributes/itunes'
 
 module Aoede
-
   class Track
-    class_attribute :attributes, instance_writer: false
-    self.attributes = Array.new
-
     include Aoede::Attributes::Base
     include Aoede::Attributes::Image
-    include Aoede::Attributes::Itunes
     include Aoede::Attributes::EchoNest
 
     attr_accessor :filename
 
     # @param filename [String]
     def initialize(filename)
-      self.filename = filename
-      self
-    end
 
     # @return [Hash]
     def to_hash
@@ -31,11 +22,12 @@ module Aoede
       hash
     end
     alias_method :to_h, :to_hash
-
-    # @param filename [String]
-    def filename=(filename)
       raise ArgumentError, "No such file: #{filename}" unless File.exist?(filename)
       @filename = filename
+
+      define_attribute_methods!
+
+      self
     end
 
     # @return [TagLib::FileRef, TagLib::MP4::File, TagLib::MPEG::File, TagLib::FLAC::File, TagLib::OGG::Vorbis::File]
