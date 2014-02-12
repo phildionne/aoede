@@ -33,14 +33,13 @@ module Aoede
     end
 
     # @param attributes [Hash]
-    # @return [Hash]
+    # @return [Boolean]
     def update(attributes)
       attributes.each do |key, value|
         public_send("#{key}=", value)
       end
 
       save
-      attributes
     end
 
     # @return [Boolean]
