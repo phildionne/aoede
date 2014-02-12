@@ -51,5 +51,21 @@ module Aoede
                  else ::TagLib::FileRef.new(filename, false)
                  end
     end
+
+    # @param attributes [Hash]
+    # @return [Hash]
+    def update(attributes)
+      attributes.each do |key, value|
+        public_send("#{key}=", value)
+      end
+
+      save
+      attributes
+    end
+
+    # @return [Boolean]
+    def save
+      audio.save && audio.close
+    end
   end
 end
