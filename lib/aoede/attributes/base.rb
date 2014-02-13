@@ -1,7 +1,3 @@
-require 'aoede/attributes/mpeg'
-require 'aoede/attributes/mp4'
-require 'aoede/attributes/fileref'
-
 module Aoede
   module Attributes
     module Base

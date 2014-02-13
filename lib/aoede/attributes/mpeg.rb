@@ -1,6 +1,10 @@
+require 'aoede/attributes/base'
+
 module Aoede
   module Attributes
     module MPEG
+      extend ActiveSupport::Concern
+      include Aoede::Attributes::Base
 
       ATTRIBUTES = {
         album: "TALB",

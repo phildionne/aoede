@@ -1,6 +1,10 @@
+require 'aoede/attributes/base'
+
 module Aoede
   module Attributes
     module MP4
+      extend ActiveSupport::Concern
+      include Aoede::Attributes::Base
 
       ATTRIBUTES = {
         album: "©alb",

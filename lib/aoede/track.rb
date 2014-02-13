@@ -1,12 +1,11 @@
-require 'aoede/attributes/base'
-require 'aoede/attributes/image'
+require 'aoede/attributes/mp4'
+require 'aoede/attributes/mpeg'
+require 'aoede/attributes/flac'
+require 'aoede/attributes/ogg'
+require 'aoede/attributes/fileref'
 
 module Aoede
   class Track
-    include Aoede::Attributes::Base
-    include Aoede::Attributes::Image
-    include Aoede::Attributes::EchoNest
-
     attr_accessor :filename
 
     # @param filename [String]
@@ -14,7 +13,18 @@ module Aoede
       raise ArgumentError, "No such file: #{filename}" unless File.exist?(filename)
       @filename = filename
 
-      define_attribute_methods!
+      case
+      when audio.is_a?(::TagLib::MP4::File)
+        self.class.send(:include, Aoede::Attributes::MP4)
+      when audio.is_a?(::TagLib::MPEG::File)
+        self.class.send(:include, Aoede::Attributes::MPEG)
+      when audio.is_a?(::TagLib::FLAC::File)
+        self.class.send(:include, Aoede::Attributes::FLAC)
+      when audio.is_a?(::TagLib::OGG::Vorbis::File)
+        self.class.send(:include, Aoede::Attributes::OGG)
+      else
+        self.class.send(:include, Aoede::Attributes::FileRef)
+      end
 
       self
     end
