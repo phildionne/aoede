@@ -3,27 +3,21 @@ module Aoede
     module Base
       extend ActiveSupport::Concern
 
-      # @return [Hash]
-      def attributes
-        case
-        when audio.is_a?(::TagLib::MP4::File)
-          Aoede::Attributes::MP4.attributes(audio)
-        when audio.is_a?(::TagLib::MPEG::File)
-          Aoede::Attributes::MPEG.attributes(audio)
-        else
-          Aoede::Attributes::FileRef.attributes(audio)
-        end
-      end
+      module ClassMethods
 
-
-      private
-
-      def define_attribute_methods!
-        attributes.keys.each do |method|
-          self.class.send(:define_method, method) do
-            attributes[method]
+        def define_attribute_getters
+          self::ATTRIBUTES.keys.each do |method|
+            send(:define_method, method) do
+              attributes[method]
+            end
           end
         end
+
+        def define_attribute_setters
+          raise NotImplementedError
+        end
+
+        private :define_attribute_setters, :define_attribute_getters
       end
     end
   end
