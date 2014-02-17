@@ -54,7 +54,12 @@ module Aoede
 
     # @return [Boolean]
     def save
-      audio.save && audio.close
+      audio.save
+    end
+
+    # @return [Nil]
+    def close
+      audio.close
     end
 
     # @return [Hash]
