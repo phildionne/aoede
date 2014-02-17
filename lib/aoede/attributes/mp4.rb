@@ -3,7 +3,6 @@ require 'aoede/attributes/base'
 module Aoede
   module Attributes
     module MP4
-      extend ActiveSupport::Concern
       include Aoede::Attributes::Base
 
       ATTRIBUTES = {
@@ -44,25 +43,18 @@ module Aoede
         tv_season: 'tvsn',
         tv_show_name: 'tvsh',
         year: '©day'
-      }
+      }.freeze
 
-      included do
-        define_attribute_getters
-        define_attribute_setters
-      end
-
-      module ClassMethods
-
-        def define_attribute_setters
-          ATTRIBUTES.keys.each do |method|
-            send(:define_method, "#{method}=") do |value|
-              audio.tag.item_list_map.insert(ATTRIBUTES[method], ::TagLib::MP4::Item.from_string_list([value]))
-            end
-          end
+      # Defines MP4 attribute setter on the passed instance
+      #
+      # @param instance [Aoede::Track]
+      # @param method [Symbol, String]
+      def self.define_attribute_setter(instance, method)
+        instance.send(:define_singleton_method, "#{method}=") do |value|
+          audio.tag.item_list_map.insert(ATTRIBUTES[method], ::TagLib::MP4::Item.from_string_list([value]))
         end
-
-        private :define_attribute_setters
       end
+
 
       # @return [Hash]
       def attributes

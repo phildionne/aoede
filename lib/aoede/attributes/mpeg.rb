@@ -3,7 +3,6 @@ require 'aoede/attributes/base'
 module Aoede
   module Attributes
     module MPEG
-      extend ActiveSupport::Concern
       include Aoede::Attributes::Base
 
       ATTRIBUTES = {
@@ -72,52 +71,44 @@ module Aoede
         wwwradio: 'WORS',
         wwwsource: 'WOAS',
         year: 'TDRC'
-      }
+      }.freeze
 
-      included do
-        define_attribute_getters
-        define_attribute_setters
-      end
-
-      module ClassMethods
-
-        def define_attribute_setters
-          ATTRIBUTES.each do |method, frame_id|
-            send(:define_method, "#{method}=") do |value|
-              case frame_id
-              when /\AT/
-                frame = TagLib::ID3v2::TextIdentificationFrame.new(frame_id, TagLib::String::UTF8)
-                frame.text = value
-              when /\AW/
-                frame = TagLib::ID3v2::UserUrlLinkFrame.new
-                frame.url = value
-              when /\ACOMM\z/
-                frame = TagLib::ID3v2::CommentsFrame.new
-                frame.text = value
-              when /\AAPIC\z/
-                raise NotImplementedError
-              when /\AGEOB\z/
-                raise NotImplementedError
-              when /\APRIV\z/
-                frame = TagLib::ID3v2::PrivateFrame.new
-                frame.text = value
-              when /\ARVAD\z/
-                raise NotImplementedError
-              when /\AUFID\z/
-                raise NotImplementedError
-              when /\AUSLT\z/
-                frame = TagLib::ID3v2::UnsynchronizedLyricsFrame.new
-                frame.text = value
-              else
-                raise # FIXME Should never happen
-              end
-
-              audio.id3v2_tag.add_frame(frame)
-            end
+      # Defines MPEG attribute setter on the passed instance
+      #
+      # @param instance [Aoede::Track]
+      # @param method [Symbol, String]
+      def self.define_attribute_setter(instance, method)
+        instance.send(:define_singleton_method, "#{method}=") do |value|
+          case frame_id
+          when /\AT/
+            frame = TagLib::ID3v2::TextIdentificationFrame.new(frame_id, TagLib::String::UTF8)
+            frame.text = value
+          when /\AW/
+            frame = TagLib::ID3v2::UserUrlLinkFrame.new
+            frame.url = value
+          when /\ACOMM\z/
+            frame = TagLib::ID3v2::CommentsFrame.new
+            frame.text = value
+          when /\AAPIC\z/
+            raise NotImplementedError
+          when /\AGEOB\z/
+            raise NotImplementedError
+          when /\APRIV\z/
+            frame = TagLib::ID3v2::PrivateFrame.new
+            frame.text = value
+          when /\ARVAD\z/
+            raise NotImplementedError
+          when /\AUFID\z/
+            raise NotImplementedError
+          when /\AUSLT\z/
+            frame = TagLib::ID3v2::UnsynchronizedLyricsFrame.new
+            frame.text = value
+          else
+            raise # FIXME Should never happen
           end
-        end
 
-        private :define_attribute_setters
+          audio.id3v2_tag.add_frame(frame)
+        end
       end
 
       # @return [Hash]

@@ -15,15 +15,14 @@ module Aoede
 
       case
       when audio.is_a?(::TagLib::MP4::File)
-        self.class.send(:include, Aoede::Attributes::MP4)
+        extend Aoede::Attributes::MP4
       when audio.is_a?(::TagLib::MPEG::File)
-        self.class.send(:include, Aoede::Attributes::MPEG)
+        extend Aoede::Attributes::MPEG
       when audio.is_a?(::TagLib::FLAC::File)
-        self.class.send(:include, Aoede::Attributes::FLAC)
-      when audio.is_a?(::TagLib::OGG::Vorbis::File)
-        self.class.send(:include, Aoede::Attributes::OGG)
+      when audio.is_a?(::TagLib::Ogg::Vorbis::File)
+        extend Aoede::Attributes::Ogg
       else
-        self.class.send(:include, Aoede::Attributes::FileRef)
+        extend Aoede::Attributes::FileRef
       end
 
       self

@@ -3,14 +3,12 @@ require 'aoede/attributes/base'
 module Aoede
   module Attributes
     module FileRef
-      extend ActiveSupport::Concern
       include Aoede::Attributes::Base
 
       ATTRIBUTES = [:album, :artist, :comment, :genre, :title, :track, :year]
 
-      # @param audio [TagLib::FileRef]
       # @return [Hash]
-      def self.attributes(audio)
+      def attributes
         attrs = Hash.new
 
         ATTRIBUTES.each do |key|
