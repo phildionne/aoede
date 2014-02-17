@@ -19,6 +19,7 @@ module Aoede
       when audio.is_a?(::TagLib::MPEG::File)
         extend Aoede::Attributes::MPEG
       when audio.is_a?(::TagLib::FLAC::File)
+        extend Aoede::Attributes::Flac
       when audio.is_a?(::TagLib::Ogg::Vorbis::File)
         extend Aoede::Attributes::Ogg
       else
