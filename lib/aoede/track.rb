@@ -6,7 +6,7 @@ require 'aoede/attributes/fileref'
 
 module Aoede
   class Track
-    attr_accessor :filename
+    attr_reader :filename
 
     # @param filename [String]
     def initialize(filename)
