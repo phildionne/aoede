@@ -42,11 +42,11 @@ module Aoede
                  end
     end
 
-    # @param attributes [Hash]
+    # @param attrs [Hash]
     # @return [Boolean]
-    def update(attributes)
-      attributes.each do |key, value|
-        public_send("#{key}=", value)
+    def update(attrs)
+      attrs.each do |attr, value|
+        public_send("#{attr}=", value)
       end
 
       save
