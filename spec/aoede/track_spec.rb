@@ -23,8 +23,8 @@ describe Aoede::Track do
       it "returns a hash of attributes with their value" do
         expect(track.to_hash).to be_a(Hash)
 
-        track.attributes.each do |attr|
-          expect(track.to_hash[attr]).to eq(track.send(attr))
+        track.attributes.each do |key, value|
+          expect(track.to_hash[key]).to eq(track.send(key))
         end
       end
     end
