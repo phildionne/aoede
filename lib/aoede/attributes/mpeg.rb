@@ -6,10 +6,11 @@ module Aoede
       include Aoede::Attributes::Base
 
       ATTRIBUTES = {
+        # filename: 'TOFN', Don't include, causes the overwrite of an existing method on Aoede::Track
         album: 'TALB',
         album_artist: 'TPE2',
         arranger: 'TPE4',
-        artist: 'TPE1:',
+        artist: 'TPE1',
         audio_delay: 'TDLY',
         audio_length: 'TLEN',
         audio_size: 'TSIZ',
@@ -25,7 +26,6 @@ module Aoede
         encoder: 'TENC',
         encoding_settings: 'TSSE',
         encoding_time: 'TDEN',
-        filename: 'TOFN',
         fileowner: 'TOWN',
         filetype: 'TFLT',
         genre: 'TCON',
@@ -48,17 +48,18 @@ module Aoede
         radio_owner: 'TRSO',
         radio_station_name: 'TRSN',
         recordingd_ates: 'TRDA',
+        release_date: 'TDRC',
         release_time: 'TDRL',
         set_subtitle: 'TSST',
-        sort_album: 'TSO2',
-        sort_album: 'TSOA',
+        sort_album: 'TSO2', # FIXME
+        sort_album: 'TSOA', # FIXME
         sort_composer: 'TSOC',
         sort_performer: 'TSOP',
         sort_title: 'TSOT',
         tagging_time: 'TDTG',
         time: 'TIME',
         title: 'TIT2',
-        track: 'TRCK',
+        track_number: 'TRCK',
         ufid: 'UFID',
         unsynced_lyrics: 'USLT',
         version: 'TIT3',
@@ -69,8 +70,7 @@ module Aoede
         wwwpayment: 'WPAY',
         wwwpublisher: 'WPUB',
         wwwradio: 'WORS',
-        wwwsource: 'WOAS',
-        year: 'TDRC'
+        wwwsource: 'WOAS'
       }.freeze
 
 
