@@ -7,8 +7,8 @@ module Aoede
 
       ATTRIBUTES = {
         album: '©alb',
-        album_artist: 'aART', # FIXME
-        artist: '©art',       # FIXME
+        album_artist: 'aART',
+        artist: '©ART',
         artwork: 'covr',
         bpm: 'tmpo',
         category: 'catg',
@@ -17,32 +17,35 @@ module Aoede
         composer: '©wrt',
         copyright: 'cprt',
         description: 'desc',
-        disk_number: 'disk',
+        description_long: 'ldes',
+        disc_number: 'disk',
+        encoded_by: '©enc',
         encoder: '©too',
         episode_global_unique_id: 'egid',
         gapless_playback: 'pgap',
-        genre: '©gen',
+        genre_predefined: 'gnre',
+        genre_user: '©gen',
         grouping: '©grp',
-        keyword: 'keyw',
         lyrics: '©lyr',
-        podcast: 'pcst',
-        podcast_url: 'purl',
+        media_type: 'stik',
+        purchase_account: 'apID',
         purchase_date: 'purd',
         rating_advisory: 'rtng',
+        release_date: '©day',
         sort_album: 'soal',
         sort_album_artist: 'soaa',
         sort_artist: 'soar',
         sort_composer: 'soco',
+        sort_show: 'sosn',
         sort_title: 'sonm',
-        stik: 'stik',
+        stik: nil,
         title: '©nam',
         track_number: 'trkn',
         tv_episode: 'tves',
         tv_episode_number: 'tven',
-        tv_network_name: 'tvnn',
+        tv_network: 'tvnn',
         tv_season: 'tvsn',
-        tv_show_name: 'tvsh',
-        year: '©day'
+        tv_show_name: 'tvsh'
       }.freeze
 
 
