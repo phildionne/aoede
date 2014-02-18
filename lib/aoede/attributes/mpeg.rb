@@ -73,12 +73,35 @@ module Aoede
         year: 'TDRC'
       }.freeze
 
-      # Defines MPEG attribute setter on the passed instance
-      #
-      # @param instance [Aoede::Track]
+
       # @param method [Symbol, String]
-      def self.define_attribute_setter(instance, method)
-        instance.send(:define_singleton_method, "#{method}=") do |value|
+      # @param frame_id [String]
+      def define_attribute_getter(method, frame_id)
+        define_method(method) do
+          frames = audio.id3v2_tag.frame_list(frame_id)
+
+          if frames.any?
+            item = frames.first
+
+            case
+            when item.is_a?(::TagLib::ID3v2::CommentsFrame) || item.is_a?(::TagLib::ID3v2::UserTextIdentificationFrame) || item.is_a?(::TagLib::ID3v2::UserUrlLinkFrame) || item.is_a?(::TagLib::ID3v2::UnsynchronizedLyricsFrame)
+              item.text
+            when item.is_a?(::TagLib::ID3v2::UrlLinkFrame)
+              item.url
+            else
+              item.field_list.first
+            end
+          else
+            nil
+          end
+        end
+      end
+      module_function :define_attribute_getter
+
+      # @param method [Symbol, String]
+      # @param frame_id [String]
+      def define_attribute_setter(method, frame_id)
+        define_method("#{method}=") do |value|
           case frame_id
           when /\AT/
             frame = TagLib::ID3v2::TextIdentificationFrame.new(frame_id, TagLib::String::UTF8)
@@ -104,37 +127,19 @@ module Aoede
             frame = TagLib::ID3v2::UnsynchronizedLyricsFrame.new
             frame.text = value
           else
-            raise # FIXME Should never happen
+            raise StandardError, "Unrecognized MPEG frame id"
           end
 
           audio.id3v2_tag.add_frame(frame)
         end
       end
+      module_function :define_attribute_setter
 
-      # @return [Hash]
-      def attributes
-        attrs = Hash.new
-
-        ATTRIBUTES.each do |key, value|
-          frames = audio.id3v2_tag.frame_list(value)
-
-          if frames.any?
-            item = frames.first
-
-            case
-            when item.is_a?(::TagLib::ID3v2::CommentsFrame) || item.is_a?(::TagLib::ID3v2::UserTextIdentificationFrame) || item.is_a?(::TagLib::ID3v2::UserUrlLinkFrame) || item.is_a?(::TagLib::ID3v2::UnsynchronizedLyricsFrame)
-              attrs[key] = item.text
-            when item.is_a?(::TagLib::ID3v2::UrlLinkFrame)
-              attrs[key] = item.url
-            else
-              attrs[key] = item.field_list.first unless item.field_list.first.blank?
-            end
-          end
-        end
-
-        attrs
+      # Define module attributes getters and setters dynamically
+      ATTRIBUTES.each do |method, mapping|
+        define_attribute_getter(method, mapping)
+        define_attribute_setter(method, mapping)
       end
-
     end
   end
 end
