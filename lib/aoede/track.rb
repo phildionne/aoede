@@ -10,7 +10,7 @@ module Aoede
 
     # @param filename [String]
     def initialize(filename)
-      raise ArgumentError, "No such file: #{filename}" unless File.exist?(filename)
+      raise ArgumentError, "No such file: '#{filename}'" unless File.exist?(filename)
       @filename = filename
 
       case
