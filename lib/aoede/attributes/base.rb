@@ -11,7 +11,7 @@ module Aoede
       def attributes
         attrs = Hash.new
 
-        ATTRIBUTES.keys.each do |attribute|
+        self.singleton_class::ATTRIBUTES.keys.each do |attribute|
           attrs[attribute] = send(attribute)
         end
 
