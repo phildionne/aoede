@@ -12,7 +12,9 @@ module Aoede
         attrs = Hash.new
 
         self.singleton_class::ATTRIBUTES.keys.each do |attribute|
-          attrs[attribute] = send(attribute)
+          if value = send(attribute)
+            attrs[attribute] = value
+          end
         end
 
         attrs
