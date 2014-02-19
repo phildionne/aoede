@@ -21,5 +21,15 @@ module Aoede
     def tracks
       files.map { |file| Aoede::Track.new(file) }
     end
+
+    # @param attributes [Hash]
+    # @return [Enumerator::Lazy]
+    def find_by(attributes = {})
+      tracks.select do |track|
+        attributes.all? do |attribute, value|
+          track.try(attribute) == value
+        end
+      end
+    end
   end
 end

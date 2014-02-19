@@ -19,5 +19,11 @@ describe Aoede::Library do
       it { expect(library.tracks).to be_a(Enumerator) }
       it { expect(library.tracks.first).to be_a(Aoede::Track) }
     end
+
+    describe :find_by do
+      it { expect(library.find_by).to be_a(Enumerator) }
+      it { expect(library.find_by(title: "Title").first).to be_a(Aoede::Track) }
+      it { expect(library.find_by(title: "Title").first.title).to eq("Title") }
+    end
   end
 end
