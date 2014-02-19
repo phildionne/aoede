@@ -9,13 +9,13 @@ describe Aoede::Attributes::MP4 do
     describe :extended do
 
       it "defines attribute getters on the receiving object" do
-        Aoede::Attributes::MP4::ATTRIBUTES.keys.each do |method|
+        Aoede::Attributes::MP4::ATTRIBUTES.each do |method|
           expect(track).to respond_to(method)
         end
       end
 
       it "defines attribute setters on the receiving object" do
-        Aoede::Attributes::MP4::ATTRIBUTES.keys.each do |method|
+        Aoede::Attributes::MP4::ATTRIBUTES.each do |method|
           expect(track).to respond_to("#{method}=")
         end
       end

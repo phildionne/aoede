@@ -9,13 +9,13 @@ describe Aoede::Attributes::Flac do
     describe :extended do
 
       it "defines attribute getters on the receiving object" do
-        Aoede::Attributes::Flac::ATTRIBUTES.keys.each do |method|
+        Aoede::Attributes::Flac::ATTRIBUTES.each do |method|
           expect(track).to respond_to(method)
         end
       end
 
       it "defines attribute setters on the receiving object" do
-        Aoede::Attributes::Flac::ATTRIBUTES.keys.each do |method|
+        Aoede::Attributes::Flac::ATTRIBUTES.each do |method|
           expect(track).to respond_to("#{method}=")
         end
       end

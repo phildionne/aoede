@@ -5,7 +5,17 @@ module Aoede
     module MP4
       include Aoede::Attributes::Base
 
-      ATTRIBUTES = {
+      ATTRIBUTES = [:album, :album_artist, :artist, :artwork, :bpm, :category,
+        :comment, :compilation, :composer, :copyright, :description, :description_long,
+        :disc_number, :encoded_by, :encoder, :episode_global_unique_id,
+        :gapless_playback, :genre_predefined, :genre_user, :grouping, :lyrics,
+        :media_type, :purchase_account, :purchase_date, :rating_advisory,
+        :release_date, :sort_album, :sort_album_artist, :sort_artist,
+        :sort_composer, :sort_show, :sort_title, :stik, :title, :track_number,
+        :tv_episode, :tv_episode_number, :tv_network, :tv_season, :tv_show_name]
+
+
+      MAPPING = {
         album: '©alb',
         album_artist: 'aART',
         artist: '©ART',
@@ -70,9 +80,9 @@ module Aoede
       module_function :define_attribute_setter
 
       # Define module attributes getters and setters dynamically
-      ATTRIBUTES.each do |method, mapping|
-        define_attribute_getter(method, mapping)
-        define_attribute_setter(method, mapping)
+      ATTRIBUTES.each do |attribute|
+        define_attribute_getter(attribute, MAPPING[attribute])
+        define_attribute_setter(attribute, MAPPING[attribute])
       end
     end
   end

@@ -5,13 +5,14 @@ module Aoede
     module Base
       extend ActiveSupport::Concern
 
-      ATTRIBUTES = Hash.new
+      ATTRIBUTES = [:album, :artist, :comment, :genre, :title, :track, :year]
+      MAPPING = Hash.new
 
       # @return [Hash]
       def attributes
         attrs = Hash.new
 
-        self.singleton_class::ATTRIBUTES.keys.each do |attribute|
+        self.singleton_class::ATTRIBUTES.each do |attribute|
           if value = send(attribute)
             attrs[attribute] = value
           end

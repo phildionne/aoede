@@ -5,7 +5,20 @@ module Aoede
     module MPEG
       include Aoede::Attributes::Base
 
-      ATTRIBUTES = {
+      ATTRIBUTES = [:album, :album_artist, :arranger, :artist, :audio_delay, :audio_length,
+        :audio_size, :author, :bpm, :comment, :compilation_flag, :composer, :conductor,
+        :copyright, :date, :disc_number, :encoder, :encoding_settings, :encoding_time,
+        :fileowner, :filetype, :genre, :grouping, :initial_key, :involved_people,
+        :isrc, :language, :lyricist, :mediatype, :mood, :musician_credits,
+        :organization, :original_album, :original_artist, :original_release_time,
+        :original_year, :popularimeter, :produced_notice, :radio_owner,
+        :radio_station_name, :recordingd_ates, :release_date, :release_time,
+        :set_subtitle, :sort_album, :sort_album_artist, :sort_artist, :sort_composer,
+        :sort_title, :tagging_time, :time, :title, :track_number, :ufid, :unsynced_lyrics,
+        :version, :wwwartist, :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo,
+        :wwwpayment, :wwwpublisher, :wwwradio, :wwwsource]
+
+      MAPPING = {
         # filename: 'TOFN', Don't include, causes the overwrite of an existing method on Aoede::Track
         album: 'TALB',
         album_artist: 'TPE2',
@@ -141,9 +154,9 @@ module Aoede
       module_function :define_attribute_setter
 
       # Define module attributes getters and setters dynamically
-      ATTRIBUTES.each do |method, mapping|
-        define_attribute_getter(method, mapping)
-        define_attribute_setter(method, mapping)
+      ATTRIBUTES.each do |attribute|
+        define_attribute_getter(attribute, MAPPING[attribute])
+        define_attribute_setter(attribute, MAPPING[attribute])
       end
     end
   end
