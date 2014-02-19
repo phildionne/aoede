@@ -21,4 +21,25 @@ describe Aoede::Attributes::Ogg do
       end
     end
   end
+
+  describe :InstanceMethods do
+
+    describe :attributes do
+      let(:attribute_hash) do
+        {
+          album: 'Album',
+          artist: 'Artist',
+          comment: 'Comment',
+          genre: 'Genre',
+          title: 'Title',
+          track_number: 1,
+          release_date: 2014
+        }
+      end
+
+      it "returns a hash populated with MP4 attributes values" do
+        expect(track.attributes).to eq(attribute_hash)
+      end
+    end
+  end
 end
