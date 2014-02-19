@@ -38,9 +38,9 @@ describe Aoede::Attributes::MPEG do
           grouping: 'Grouping',
           release_date: '2014',
           sort_album: 'Album sort',
-          sort_album_artist: "Album Artist sort",
+          sort_album_artist: 'Album Artist sort',
+          sort_artist: 'Artist sort',
           sort_composer: 'Composer sort',
-          sort_performer: 'Artist sort',
           sort_title: 'Title sort',
           title: 'Title',
           track_number: '1/5'

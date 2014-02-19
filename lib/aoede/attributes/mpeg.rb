@@ -51,10 +51,10 @@ module Aoede
         release_date: 'TDRC',
         release_time: 'TDRL',
         set_subtitle: 'TSST',
-        sort_album: 'TSO2', # FIXME
-        sort_album: 'TSOA', # FIXME
+        sort_album: 'TSOA',
+        sort_album_artist: 'TSO2',
+        sort_artist: 'TSOP',
         sort_composer: 'TSOC',
-        sort_performer: 'TSOP',
         sort_title: 'TSOT',
         tagging_time: 'TDTG',
         time: 'TIME',
@@ -72,6 +72,11 @@ module Aoede
         wwwradio: 'WORS',
         wwwsource: 'WOAS'
       }.freeze
+
+
+      # TODO
+      # Fallback from id3v2_tag to id3v1_tag
+      # Available attributes: title, artist, album, comment, date, track_number, genre
 
 
       # @param method [Symbol, String]
