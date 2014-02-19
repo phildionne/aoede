@@ -11,9 +11,11 @@ module Aoede
   def library(path)
     Library.new(path)
   end
+  module_function :library
 
   # @param filename [String]
   def track(filename)
     Track.new(filename)
   end
+  module_function :track
 end
