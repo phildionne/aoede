@@ -51,5 +51,24 @@ describe Aoede::Attributes::MPEG do
         expect(track.attributes).to eq(attribute_hash)
       end
     end
+
+    describe :audio_properties do
+      let(:track) { Aoede::Track.new(filename_mp3, audio_properties: true) }
+      let(:audio_properties_hash) do
+        {
+          bitrate: 320,
+          channels: 2,
+          length: 279,
+          sample_rate: 44100,
+          layer: 3,
+          original?: true,
+          version: 0
+        }
+      end
+
+      it "returns a hash populated with MPEG audio properties values" do
+        expect(track.audio_properties).to eq(audio_properties_hash)
+      end
+    end
   end
 end

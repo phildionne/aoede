@@ -14,6 +14,8 @@ module Aoede
         :sort_composer, :sort_show, :sort_title, :stik, :title, :track_number,
         :tv_episode, :tv_episode_number, :tv_network, :tv_season, :tv_show_name]
 
+      AUDIO_PROPERTIES += [:bits_per_sample]
+
 
       MAPPING = {
         album: '©alb',

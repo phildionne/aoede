@@ -18,6 +18,8 @@ module Aoede
         :version, :wwwartist, :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo,
         :wwwpayment, :wwwpublisher, :wwwradio, :wwwsource]
 
+      AUDIO_PROPERTIES += [:copyrighted?, :layer, :original?, :protection_enabled, :version]
+
       MAPPING = {
         # filename: 'TOFN', Don't include, causes the overwrite of an existing method on Aoede::Track
         album: 'TALB',

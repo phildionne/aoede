@@ -52,5 +52,22 @@ describe Aoede::Attributes::MP4 do
         expect(track.attributes).to eq(attribute_hash)
       end
     end
+
+    describe :audio_properties do
+      let(:track) { Aoede::Track.new(filename_mp4, audio_properties: true) }
+      let(:audio_properties_hash) do
+        {
+          bitrate: 222,
+          channels: 2,
+          length: 279,
+          sample_rate: 44100,
+          bits_per_sample: 16
+        }
+      end
+
+      it "returns a hash populated with MP4 audio properties values" do
+        expect(track.audio_properties).to eq(audio_properties_hash)
+      end
+    end
   end
 end

@@ -41,5 +41,25 @@ describe Aoede::Attributes::Ogg do
         expect(track.attributes).to eq(attribute_hash)
       end
     end
+
+    describe :audio_properties do
+      let(:track) { Aoede::Track.new(filename_ogg, audio_properties: true) }
+      let(:audio_properties_hash) do
+        {
+          bitrate: 192,
+          channels: 2,
+          length: 279,
+          sample_rate: 44100,
+          bitrate_maximum: 0,
+          bitrate_minimum: 0,
+          bitrate_nominal: 192000,
+          vorbis_version: 0
+        }
+      end
+
+      it "returns a hash populated with Ogg audio properties values" do
+        expect(track.audio_properties).to eq(audio_properties_hash)
+      end
+    end
   end
 end

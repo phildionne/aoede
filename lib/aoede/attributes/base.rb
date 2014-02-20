@@ -6,6 +6,7 @@ module Aoede
       extend ActiveSupport::Concern
 
       ATTRIBUTES = [:album, :artist, :comment, :genre, :title, :track_number, :release_date]
+      AUDIO_PROPERTIES = [:bitrate, :channels, :length, :sample_rate]
       MAPPING = Hash.new
 
       # @return [Hash]
@@ -19,6 +20,21 @@ module Aoede
         end
 
         attrs
+      end
+
+      # @return [Hash]
+      def audio_properties
+        return unless audio.audio_properties.present?
+
+        properties = Hash.new
+
+        self.singleton_class::AUDIO_PROPERTIES.each do |method|
+          if value = audio.audio_properties.send(method)
+            properties[method] = value
+          end
+        end
+
+        properties
       end
 
       # @param method_name [Symbol, String]

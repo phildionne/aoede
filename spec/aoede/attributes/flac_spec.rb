@@ -41,5 +41,23 @@ describe Aoede::Attributes::Flac do
         expect(track.attributes).to eq(attribute_hash)
       end
     end
+
+    describe :audio_properties do
+      let(:track) { Aoede::Track.new(filename_flac, audio_properties: true) }
+      let(:audio_properties_hash) do
+        {
+          bitrate: 1721,
+          channels: 2,
+          length: 279,
+          sample_rate: 44100,
+          sample_width: 24,
+          signature: "\xA5b\x10\xC8\x1F\xD3s\x11f\xDF\x1D\xC8\x10L\xE4\xD8".b # ASCI-8BIT
+        }
+      end
+
+      it "returns a hash populated with Flac audio properties values" do
+        expect(track.audio_properties).to eq(audio_properties_hash)
+      end
+    end
   end
 end

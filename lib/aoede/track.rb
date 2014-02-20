@@ -6,11 +6,18 @@ require 'aoede/attributes/fileref'
 
 module Aoede
   class Track
+    attr_accessor :options
     attr_reader :filename
 
     # @param filename [String]
-    def initialize(filename)
+    def initialize(filename, options = {})
       raise ArgumentError, "No such file: '#{filename}'" unless File.exist?(filename)
+
+      options = options.reverse_merge({
+        audio_properties: false
+      })
+
+      @options = options
       @filename = filename
 
       case
