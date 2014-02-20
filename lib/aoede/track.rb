@@ -1,3 +1,4 @@
+require 'aoede/image'
 require 'aoede/attributes/mp4'
 require 'aoede/attributes/mpeg'
 require 'aoede/attributes/flac'
