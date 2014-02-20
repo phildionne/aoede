@@ -33,6 +33,10 @@ module Aoede
       def delete_images
         audio.remove_pictures
       end
+
+      def vendor_id
+        audio.xiph_comment.vendor_id
+      end
     end
   end
 end
