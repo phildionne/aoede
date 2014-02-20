@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aoede::Attributes::Flac do
-  let(:filename_flac)  { File.expand_path('Test - Track.flac', 'spec/support/') }
+  let(:filename_flac) { File.expand_path('Test - Track.flac', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename_flac) }
 
   describe :ClassMethods do
@@ -37,7 +37,7 @@ describe Aoede::Attributes::Flac do
         }
       end
 
-      it "returns a hash populated with MP4 attributes values" do
+      it "returns a hash populated with Flac attributes values" do
         expect(track.attributes).to eq(attribute_hash)
       end
     end
