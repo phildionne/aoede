@@ -6,6 +6,33 @@ module Aoede
       include Aoede::Attributes::Base
 
       AUDIO_PROPERTIES += [:sample_width, :signature]
+
+      # @return [Array]
+      def images
+        audio.picture_list.map do |image|
+          Aoede::Image.new(data: image.data, mime_type: image.mime_type, width: image.width, height: image.height)
+        end
+      end
+
+      # @param image [Image]
+      def add_image(image)
+        picture = TagLib::FLAC::Picture.new
+
+        picture.mime_type = image.mime_type
+        picture.type      = TagLib::FLAC::Picture::FrontCover
+        picture.data      = image.data
+        picture.width     = image.width
+        picture.height    = image.height
+
+        audio.add_picture(picture)
+      end
+
+      # Deletes all images
+      #
+      # @return [Nil]
+      def delete_images
+        audio.remove_pictures
+      end
     end
   end
 end
