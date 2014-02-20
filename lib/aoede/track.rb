@@ -2,7 +2,6 @@ require 'aoede/attributes/mp4'
 require 'aoede/attributes/mpeg'
 require 'aoede/attributes/flac'
 require 'aoede/attributes/ogg'
-require 'aoede/attributes/fileref'
 
 module Aoede
   class Track
@@ -30,7 +29,7 @@ module Aoede
       when audio.is_a?(::TagLib::Ogg::Vorbis::File)
         extend Aoede::Attributes::Ogg
       else
-        extend Aoede::Attributes::FileRef
+        self.singleton_class.include Aoede::Attributes::Base
       end
 
       self
@@ -41,11 +40,11 @@ module Aoede
       @audio ||= case filename
                  # Do not read audio properties for faster initialization
                  # see http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize
-                 when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/ then ::TagLib::MP4::File.new(filename, false)
-                 when /\.(oga|ogg)\z/ then ::TagLib::Ogg::Vorbis::File.new(filename, false)
-                 when /\.flac\z/      then ::TagLib::FLAC::File.new(filename, false)
-                 when /\.mp3\z/       then ::TagLib::MPEG::File.new(filename, false)
-                 else ::TagLib::FileRef.new(filename, false)
+                 when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/ then ::TagLib::MP4::File.new(filename, options[:audio_properties])
+                 when /\.(oga|ogg)\z/ then ::TagLib::Ogg::Vorbis::File.new(filename, options[:audio_properties])
+                 when /\.flac\z/      then ::TagLib::FLAC::File.new(filename, options[:audio_properties])
+                 when /\.mp3\z/       then ::TagLib::MPEG::File.new(filename, options[:audio_properties])
+                 else ::TagLib::FileRef.new(filename, options[:audio_properties])
                  end
     end
 

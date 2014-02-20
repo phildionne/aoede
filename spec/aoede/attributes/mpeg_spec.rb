@@ -33,9 +33,12 @@ describe Aoede::Attributes::MPEG do
           bpm: '100',
           comment: 'Comment',
           composer: 'Composer',
+          copyright: 'Copyright',
           disc_number: '1/2',
           genre: 'Genre',
           grouping: 'Grouping',
+          language: 'Language',
+          organization: 'Editor',
           release_date: '2014',
           sort_album: 'Album sort',
           sort_album_artist: 'Album Artist sort',
@@ -43,7 +46,7 @@ describe Aoede::Attributes::MPEG do
           sort_composer: 'Composer sort',
           sort_title: 'Title sort',
           title: 'Title',
-          track_number: '1/5'
+          track_number: '1'
         }
       end
 
