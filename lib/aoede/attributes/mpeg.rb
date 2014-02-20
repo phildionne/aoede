@@ -132,8 +132,6 @@ module Aoede
           when /\ACOMM\z/
             frame = TagLib::ID3v2::CommentsFrame.new
             frame.text = value
-          when /\AAPIC\z/
-            raise NotImplementedError
           when /\AGEOB\z/
             raise NotImplementedError
           when /\APRIV\z/
@@ -154,6 +152,36 @@ module Aoede
         end
       end
       module_function :define_attribute_setter
+
+      # @return [Array]
+      def images
+        frames = audio.id3v2_tag.frame_list('APIC')
+
+        frames.map do |image|
+          Aoede::Image.new(data: image.picture, mime_type: image.mime_type)
+        end
+      end
+
+      # @param image [Image]
+      def add_image(image)
+        frame = TagLib::ID3v2::AttachedPictureFrame.new
+
+        frame.mime_type = image.mime_type
+        frame.type      = TagLib::ID3v2::AttachedPictureFrame::FrontCover
+        frame.picture   = image.data
+
+        audio.id3v2_tag.add_frame(frame)
+      end
+
+      # Deletes all images
+      #
+      # @return [Nil]
+      def delete_images
+        frames = audio.id3v2_tag.frame_list('APIC')
+        frames.each do |frame|
+          audio.id3v2_tag.remove_frame(frame)
+        end
+      end
 
       # Define module attributes getters and setters dynamically
       ATTRIBUTES.each do |attribute|
