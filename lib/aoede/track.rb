@@ -71,7 +71,7 @@ module Aoede
 
     # @return [Hash]
     def to_hash
-      attributes
+      attributes.with_indifferent_access
     end
     alias_method :to_h, :to_hash
   end
