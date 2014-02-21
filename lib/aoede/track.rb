@@ -14,7 +14,7 @@ module Aoede
       raise ArgumentError, "No such file: '#{filename}'" unless File.exist?(filename)
 
       options = options.reverse_merge({
-        audio_properties: false
+        audio_properties: true
       })
 
       @options = options
