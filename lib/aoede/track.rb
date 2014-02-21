@@ -20,15 +20,15 @@ module Aoede
       @options = options
       @filename = filename
 
-      case
-      when audio.is_a?(::TagLib::MP4::File)
+      case filename
+      when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/
         extend Aoede::Attributes::MP4
-      when audio.is_a?(::TagLib::MPEG::File)
-        extend Aoede::Attributes::MPEG
-      when audio.is_a?(::TagLib::FLAC::File)
-        extend Aoede::Attributes::Flac
-      when audio.is_a?(::TagLib::Ogg::Vorbis::File)
+      when /\.(oga|ogg)\z/
         extend Aoede::Attributes::Ogg
+      when /\.flac\z/
+        extend Aoede::Attributes::Flac
+      when /\.mp3\z/
+        extend Aoede::Attributes::MPEG
       else
         self.singleton_class.send(:include, Aoede::Attributes::Base)
       end
@@ -39,13 +39,16 @@ module Aoede
     # @return [TagLib::FileRef, TagLib::MP4::File, TagLib::MPEG::File, TagLib::FLAC::File, TagLib::Ogg::Vorbis::File]
     def audio
       @audio ||= case filename
-                 # Do not read audio properties for faster initialization
-                 # see http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize
-                 when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/ then ::TagLib::MP4::File.new(filename, options[:audio_properties])
-                 when /\.(oga|ogg)\z/ then ::TagLib::Ogg::Vorbis::File.new(filename, options[:audio_properties])
-                 when /\.flac\z/      then ::TagLib::FLAC::File.new(filename, options[:audio_properties])
-                 when /\.mp3\z/       then ::TagLib::MPEG::File.new(filename, options[:audio_properties])
-                 else ::TagLib::FileRef.new(filename, options[:audio_properties])
+                 when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/
+                   TagLib::MP4::File.new(filename, options[:audio_properties])
+                 when /\.(oga|ogg)\z/
+                   TagLib::Ogg::Vorbis::File.new(filename, options[:audio_properties])
+                 when /\.flac\z/
+                   TagLib::FLAC::File.new(filename, options[:audio_properties])
+                 when /\.mp3\z/
+                   TagLib::MPEG::File.new(filename, options[:audio_properties])
+                 else
+                   TagLib::FileRef.new(filename, options[:audio_properties])
                  end
     end
 
