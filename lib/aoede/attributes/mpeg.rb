@@ -98,18 +98,25 @@ module Aoede
       # @param frame_id [String]
       def define_attribute_getter(method, frame_id)
         define_method(method) do
-          frames = audio.id3v2_tag.frame_list(frame_id)
+          if audio.id3v2_tag
+            frames = audio.id3v2_tag.frame_list(frame_id)
 
-          if frames.any?
-            item = frames.first
+            if frames.any?
+              item = frames.first
 
-            case
-            when item.is_a?(::TagLib::ID3v2::CommentsFrame) || item.is_a?(::TagLib::ID3v2::UserTextIdentificationFrame) || item.is_a?(::TagLib::ID3v2::UserUrlLinkFrame) || item.is_a?(::TagLib::ID3v2::UnsynchronizedLyricsFrame)
-              item.text
-            when item.is_a?(::TagLib::ID3v2::UrlLinkFrame)
-              item.url
+              text_frames = [TagLib::ID3v2::CommentsFrame, TagLib::ID3v2::UserTextIdentificationFrame,
+                TagLib::ID3v2::UserUrlLinkFrame, TagLib::ID3v2::UnsynchronizedLyricsFrame]
+
+              case
+              when text_frames.any? { |frame_klass| item.is_a?(frame_klass) }
+                item.text
+              when item.is_a?(TagLib::ID3v2::UrlLinkFrame)
+                item.url
+              else
+                item.to_string
+              end
             else
-              item.field_list.first
+              nil
             end
           else
             nil
