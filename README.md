@@ -1,6 +1,11 @@
 # Aoede
 A thin wrapper on top of [taglib-ruby](https://github.com/robinst/taglib-ruby) providing a consistent API to play with tracks.
 
+[![Gem Version](https://badge.fury.io/rb/aoede.png)](http://badge.fury.io/rb/aoede)
+[![Code Climate](https://codeclimate.com/github/phildionne/aoede.png)](https://codeclimate.com/github/phildionne/aoede)
+[![Coverage Status](https://coveralls.io/repos/phildionne/aoede/badge.png)](https://coveralls.io/r/phildionne/aoede)
+[![Build Status](https://travis-ci.org/phildionne/aoede.png)](https://travis-ci.org/phildionne/aoede)
+
 ## Usage
 
 ### Track
