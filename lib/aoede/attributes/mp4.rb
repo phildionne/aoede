@@ -83,9 +83,13 @@ module Aoede
 
       # @return [Array]
       def images
-        audio.tag.item_list_map[MAPPING[:artwork]].to_cover_art_list.map do |picture|
-          format = Aoede::Image::MP4_FORMAT_MAPPING.find { |k, v| v == picture.format }.first
-          Image.new(data: picture.data, format: format)
+        if item = audio.tag.item_list_map[MAPPING[:artwork]]
+          item.to_cover_art_list.map do |picture|
+            format = Aoede::Image::MP4_FORMAT_MAPPING.find { |k, v| v == picture.format }.first
+            Image.new(data: picture.data, format: format)
+          end
+        else
+          Array.new
         end
       end
 
