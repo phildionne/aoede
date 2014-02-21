@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Aoede::Track do
-  let(:filename_mp3)  { File.expand_path('Test - Track 320.mp3', 'spec/support/') }
-  let(:filename_mp4)  { File.expand_path('Test - Track AAC.m4a', 'spec/support/') }
-  let(:filename_flac) { File.expand_path('Test - Track.flac', 'spec/support/') }
-  let(:filename_ogg)  { File.expand_path('Test - Track.ogg', 'spec/support/') }
-  let(:filename_wav)  { File.expand_path('Test - Track.wav', 'spec/support/') }
+  let(:filename_mp3)  { File.expand_path('Artist - Title.mp3', 'spec/support/') }
+  let(:filename_mp4)  { File.expand_path('Artist - Title AAC.m4a', 'spec/support/') }
+  let(:filename_flac) { File.expand_path('Artist - Title.flac', 'spec/support/') }
+  let(:filename_ogg)  { File.expand_path('Artist - Title.ogg', 'spec/support/') }
+  let(:filename_wav)  { File.expand_path('Artist - Title.wav', 'spec/support/') }
 
   describe :InstanceMethods do
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aoede::Attributes::Ogg do
-  let(:filename_ogg)  { File.expand_path('Test - Track.ogg', 'spec/support/') }
+  let(:filename_ogg)  { File.expand_path('Artist - Title.ogg', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename_ogg) }
 
   describe :ClassMethods do
@@ -46,13 +46,13 @@ describe Aoede::Attributes::Ogg do
       let(:track) { Aoede::Track.new(filename_ogg, audio_properties: true) }
       let(:audio_properties_hash) do
         {
-          bitrate: 192,
+          bitrate: 0,
           channels: 2,
-          length: 279,
+          length: 10,
           sample_rate: 44100,
           bitrate_maximum: 0,
           bitrate_minimum: 0,
-          bitrate_nominal: 192000,
+          bitrate_nominal: 0,
           vorbis_version: 0
         }
       end

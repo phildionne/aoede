@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aoede::Attributes::MPEG do
-  let(:filename_mp3) { File.expand_path('Test - Track 320.mp3', 'spec/support/') }
+  let(:filename_mp3) { File.expand_path('Artist - Title.mp3', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename_mp3) }
 
   describe :ClassMethods do
@@ -30,11 +30,13 @@ describe Aoede::Attributes::MPEG do
           album: 'Album',
           album_artist: 'Album Artist',
           artist: 'Artist',
+          audio_length: '9848',
           bpm: '100',
           comment: 'Comment',
           composer: 'Composer',
           copyright: 'Copyright',
           disc_number: '1/2',
+          encoder: 'Encoder',
           genre: 'Genre',
           grouping: 'Grouping',
           language: 'Language',
@@ -47,7 +49,7 @@ describe Aoede::Attributes::MPEG do
           sort_composer: 'Composer sort',
           sort_title: 'Title sort',
           title: 'Title',
-          track_number: '1'
+          track_number: '1/10'
         }
       end
 
@@ -60,9 +62,9 @@ describe Aoede::Attributes::MPEG do
       let(:track) { Aoede::Track.new(filename_mp3, audio_properties: true) }
       let(:audio_properties_hash) do
         {
-          bitrate: 320,
+          bitrate: 127,
           channels: 2,
-          length: 279,
+          length: 9,
           sample_rate: 44100,
           layer: 3,
           original?: true,

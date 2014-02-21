@@ -10,7 +10,7 @@ describe Aoede do
   end
 
   describe :track do
-    let(:filename) { File.expand_path('Test - Track 320.mp3', 'spec/support/') }
+    let(:filename) { File.expand_path('Artist - Title.mp3', 'spec/support/') }
 
     it { expect(Aoede.track(filename)).to be_a(Aoede::Track) }
     it { expect(Aoede.track(filename).filename).to eq(filename) }

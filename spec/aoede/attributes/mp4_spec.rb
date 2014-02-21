@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aoede::Attributes::MP4 do
-  let(:filename_mp4)  { File.expand_path('Test - Track AAC.m4a', 'spec/support/') }
+  let(:filename_mp4) { File.expand_path('Artist - Title AAC.m4a', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename_mp4) }
 
   describe :ClassMethods do
@@ -37,6 +37,7 @@ describe Aoede::Attributes::MP4 do
           encoder: 'Encoder',
           genre_user: 'Genre',
           grouping: 'Grouping',
+          lyrics: 'Lyrics',
           release_date: '2014',
           sort_album: 'Album sort',
           sort_album_artist: 'Album Artist sort',
@@ -57,9 +58,9 @@ describe Aoede::Attributes::MP4 do
       let(:track) { Aoede::Track.new(filename_mp4, audio_properties: true) }
       let(:audio_properties_hash) do
         {
-          bitrate: 222,
+          bitrate: 125,
           channels: 2,
-          length: 279,
+          length: 10,
           sample_rate: 44100,
           bits_per_sample: 16
         }

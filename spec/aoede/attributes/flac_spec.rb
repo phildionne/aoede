@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aoede::Attributes::Flac do
-  let(:filename_flac) { File.expand_path('Test - Track.flac', 'spec/support/') }
+  let(:filename_flac) { File.expand_path('Artist - Title.flac', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename_flac) }
 
   describe :ClassMethods do
@@ -46,12 +46,12 @@ describe Aoede::Attributes::Flac do
       let(:track) { Aoede::Track.new(filename_flac, audio_properties: true) }
       let(:audio_properties_hash) do
         {
-          bitrate: 1721,
+          bitrate: 1641,
           channels: 2,
-          length: 279,
+          length: 10,
           sample_rate: 44100,
           sample_width: 24,
-          signature: "\xA5b\x10\xC8\x1F\xD3s\x11f\xDF\x1D\xC8\x10L\xE4\xD8".b # ASCI-8BIT
+          signature: "\x1A.\xA4\xBA\x05O~\xB7\xA9\xC8z\xB5\xE7O\xFD\x9C".b # ASCI-8BIT
         }
       end
 

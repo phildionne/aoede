@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Aoede::Attributes::Base do
-  let(:filename) { File.expand_path('Test - Track.wav', 'spec/support/') }
+  let(:filename) { File.expand_path('Artist - Title.wav', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename) }
 
   describe :ClassMethods do
