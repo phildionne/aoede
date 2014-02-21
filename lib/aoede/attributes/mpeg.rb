@@ -177,10 +177,10 @@ module Aoede
 
       # Deletes all images
       #
-      # @return [Nil]
+      # @return [Boolean]
       def delete_images
         frames = audio.id3v2_tag.frame_list('APIC')
-        frames.each do |frame|
+        frames.all? do |frame|
           audio.id3v2_tag.remove_frame(frame)
         end
       end

@@ -105,9 +105,9 @@ module Aoede
 
       # Deletes all images
       #
-      # @return [Nil]
+      # @return [Boolean]
       def delete_images
-        audio.tag.item_list_map.erase(MAPPING[:artwork])
+        !!audio.tag.item_list_map.erase(MAPPING[:artwork])
       end
 
       # Define module attributes getters and setters dynamically

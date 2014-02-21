@@ -29,9 +29,9 @@ module Aoede
 
       # Deletes all images
       #
-      # @return [Nil]
+      # @return [Boolean]
       def delete_images
-        audio.remove_pictures
+        !!audio.remove_pictures
       end
 
       def vendor_id
