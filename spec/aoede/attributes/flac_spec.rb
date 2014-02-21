@@ -84,9 +84,8 @@ describe Aoede::Attributes::Flac do
     describe :delete_images do
 
       it "deletes all images" do
-        expect {
-          track.delete_images
-        }.to change(track.images, :count).by(-1)
+        track.delete_images
+        expect(track.images).to be_empty
       end
     end
   end
