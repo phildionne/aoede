@@ -10,7 +10,7 @@ A thin wrapper on top of [taglib-ruby](https://github.com/robinst/taglib-ruby) p
 
 ### Track
 
-Instantiating a new track automatically infers the underlying TagLib::File to use by looking at the filename. Currently these formats are supported: mp4, m4a, oga, ogg, flac, mp3
+Instantiating a new track automatically infers the underlying `TagLib::File` to use by looking at the filename. Currently these formats are supported: `mp4, m4a, oga, ogg, flac, mp3`
 
 ```ruby
 t = Aoede::Track.new("path-to/Temples - Mesmerise.mp3")
@@ -30,8 +30,6 @@ t.update(title: "Mesmerise")
 # => true
 ```
 
-Note: Pass `audio_properties: false` for faster initialization, see [http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize](http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize)
-
 Access the underlying TagLib::File:
 
 ```ruby
@@ -39,21 +37,28 @@ t.audio
 # => #<TagLib::MPEG::File:0x007fa1b1b76290 @__swigtype__="_p_TagLib__MPEG__File">
 ```
 
+__Note:__ Pass `audio_properties: false` for faster initialization, see [http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize](http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize)
+
 
 ### Image
 
-A simple structure working with any underlying TagLib::File instance.
+A simple structure to work with images:
 
 ```ruby
 f = File.new("path-to/cover.jpeg")
 i = Aoede::Image.new(data: f.read, format: :jpeg, width: 200, height: 200)
 
+# Adding an image
 t.add_image(i)
 # =>
 
 t.save
 t.images
 # =>
+
+# Deleting all images
+t.delete_images
+# => true
 ```
 
 
