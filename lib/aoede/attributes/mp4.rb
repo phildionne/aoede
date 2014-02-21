@@ -65,8 +65,10 @@ module Aoede
       # @param atom [String]
       def define_attribute_getter(method, atom)
         define_method(method) do
-          if item = audio.tag.item_list_map.fetch(atom)
-            item.to_string_list.first
+          if audio.tag
+            if item = audio.tag.item_list_map.fetch(atom)
+              item.to_string_list.first
+            end
           end
         end
       end
