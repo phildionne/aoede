@@ -30,7 +30,7 @@ module Aoede
       when audio.is_a?(::TagLib::Ogg::Vorbis::File)
         extend Aoede::Attributes::Ogg
       else
-        self.singleton_class.include Aoede::Attributes::Base
+        self.singleton_class.send(:include, Aoede::Attributes::Base)
       end
 
       self
