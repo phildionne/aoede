@@ -38,6 +38,7 @@ describe Aoede::Attributes::MPEG do
           genre: 'Genre',
           grouping: 'Grouping',
           language: 'Language',
+          lyrics: 'Lyrics',
           organization: 'Editor',
           release_date: '2014',
           sort_album: 'Album sort',

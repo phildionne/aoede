@@ -14,7 +14,7 @@ module Aoede
         :original_year, :popularimeter, :produced_notice, :radio_owner,
         :radio_station_name, :recordingd_ates, :release_date, :release_time,
         :set_subtitle, :sort_album, :sort_album_artist, :sort_artist, :sort_composer,
-        :sort_title, :tagging_time, :time, :title, :track_number, :ufid, :unsynced_lyrics,
+        :sort_title, :tagging_time, :time, :title, :track_number, :ufid, :lyrics,
         :version, :wwwartist, :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo,
         :wwwpayment, :wwwpublisher, :wwwradio, :wwwsource]
 
@@ -76,7 +76,7 @@ module Aoede
         title: 'TIT2',
         track_number: 'TRCK',
         ufid: 'UFID',
-        unsynced_lyrics: 'USLT',
+        lyrics: 'USLT',
         version: 'TIT3',
         wwwartist: 'WOAR',
         wwwcommercialinfo: 'WCOM',
