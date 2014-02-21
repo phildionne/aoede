@@ -89,11 +89,6 @@ module Aoede
       }.freeze
 
 
-      # TODO
-      # Fallback from id3v2_tag to id3v1_tag
-      # Available attributes: title, artist, album, comment, date, track_number, genre
-
-
       # @param method [Symbol, String]
       # @param frame_id [String]
       def define_attribute_getter(method, frame_id)

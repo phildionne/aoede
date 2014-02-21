@@ -78,7 +78,7 @@ module Aoede
       # @param atom [String]
       def define_attribute_setter(method, atom)
         define_method("#{method}=") do |value|
-          audio.tag.item_list_map.insert(atom, ::TagLib::MP4::Item.from_string_list([value]))
+          audio.tag.item_list_map.insert(atom, TagLib::MP4::Item.from_string_list([value]))
         end
       end
       module_function :define_attribute_setter
