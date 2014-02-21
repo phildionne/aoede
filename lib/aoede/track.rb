@@ -38,18 +38,18 @@ module Aoede
 
     # @return [TagLib::FileRef, TagLib::MP4::File, TagLib::MPEG::File, TagLib::FLAC::File, TagLib::Ogg::Vorbis::File]
     def audio
-      @audio ||= case filename
-                 when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/
-                   TagLib::MP4::File.new(filename, options[:audio_properties])
-                 when /\.(oga|ogg)\z/
-                   TagLib::Ogg::Vorbis::File.new(filename, options[:audio_properties])
-                 when /\.flac\z/
-                   TagLib::FLAC::File.new(filename, options[:audio_properties])
-                 when /\.mp3\z/
-                   TagLib::MPEG::File.new(filename, options[:audio_properties])
-                 else
-                   TagLib::FileRef.new(filename, options[:audio_properties])
-                 end
+      case filename
+      when /\.(mp4|m4a|m4p|m4b|m4r|m4v)\z/
+        TagLib::MP4::File.new(filename, options[:audio_properties])
+      when /\.(oga|ogg)\z/
+        TagLib::Ogg::Vorbis::File.new(filename, options[:audio_properties])
+      when /\.flac\z/
+        TagLib::FLAC::File.new(filename, options[:audio_properties])
+      when /\.mp3\z/
+        TagLib::MPEG::File.new(filename, options[:audio_properties])
+      else
+        TagLib::FileRef.new(filename, options[:audio_properties])
+      end
     end
 
     # @param attrs [Hash]
