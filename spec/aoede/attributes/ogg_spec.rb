@@ -24,6 +24,13 @@ describe Aoede::Attributes::Ogg do
 
   describe :InstanceMethods do
 
+    Aoede::Attributes::Ogg::ATTRIBUTES.each do |method|
+      it "sets attribute '#{method}'" do
+        track.send("#{method}=", "value")
+        expect(track.send(method)).to eq("value")
+      end
+    end
+
     describe :attributes do
       let(:attribute_hash) do
         {

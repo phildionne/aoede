@@ -30,6 +30,13 @@ describe Aoede::Attributes::MP4 do
 
   describe :InstanceMethods do
 
+    Aoede::Attributes::MP4::ATTRIBUTES.each do |method|
+      it "sets attribute '#{method}'" do
+        track.send("#{method}=", "value")
+        expect(track.send(method)).to eq("value")
+      end
+    end
+
     describe :attributes do
       let(:attribute_hash) do
         {
