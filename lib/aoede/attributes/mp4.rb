@@ -5,17 +5,15 @@ module Aoede
     module MP4
       include Aoede::Attributes::Base
 
-      ATTRIBUTES = [:album, :album_artist, :artist, :artwork, :bpm, :category,
-        :comment, :compilation, :composer, :copyright, :description, :description_long,
-        :disc_number, :encoded_by, :encoder, :episode_global_unique_id,
-        :gapless_playback, :genre_predefined, :genre_user, :grouping, :lyrics,
-        :media_type, :purchase_account, :purchase_date, :rating_advisory,
-        :release_date, :sort_album, :sort_album_artist, :sort_artist,
-        :sort_composer, :sort_show, :sort_title, :stik, :title, :track_number,
-        :tv_episode, :tv_episode_number, :tv_network, :tv_season, :tv_show_name]
+      ATTRIBUTES += [:album_artist, :artwork, :bpm, :category, :compilation,
+        :composer, :copyright, :description, :description_long, :disc_number,
+        :encoded_by, :encoder, :episode_global_unique_id, :gapless_playback,
+        :genre_predefined, :grouping, :lyrics, :media_type, :purchase_account,
+        :purchase_date, :rating_advisory, :sort_album, :sort_album_artist,
+        :sort_artist, :sort_composer, :sort_show, :sort_title, :stik, :tv_episode,
+        :tv_episode_number, :tv_network, :tv_season, :tv_show_name]
 
       AUDIO_PROPERTIES += [:bits_per_sample]
-
 
       MAPPING = {
         album: '©alb',

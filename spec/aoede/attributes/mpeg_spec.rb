@@ -4,6 +4,12 @@ describe Aoede::Attributes::MPEG do
   let(:filename_mp3) { File.expand_path('Artist - Title.mp3', 'spec/support/') }
   let(:track) { Aoede::Track.new(filename_mp3) }
 
+  it "all Attributes have a Mapping" do
+    expect(Aoede::Attributes::MPEG::ATTRIBUTES.all? do |key|
+      Aoede::Attributes::MPEG::MAPPING.key?(key)
+    end).to be_true
+  end
+
   describe :ClassMethods do
 
     describe :extended do

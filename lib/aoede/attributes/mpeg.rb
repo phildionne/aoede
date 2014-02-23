@@ -5,18 +5,18 @@ module Aoede
     module MPEG
       include Aoede::Attributes::Base
 
-      ATTRIBUTES = [:album, :album_artist, :arranger, :artist, :audio_delay, :audio_length,
-        :audio_size, :author, :bpm, :comment, :compilation_flag, :composer, :conductor,
+      ATTRIBUTES += [:album_artist, :arranger, :audio_delay, :audio_length,
+        :audio_size, :author, :bpm, :compilation_flag, :composer, :conductor,
         :copyright, :date, :disc_number, :encoder, :encoding_settings, :encoding_time,
-        :fileowner, :filetype, :genre, :grouping, :initial_key, :involved_people,
-        :isrc, :language, :lyricist, :mediatype, :mood, :musician_credits,
-        :organization, :original_album, :original_artist, :original_release_time,
-        :original_year, :popularimeter, :produced_notice, :radio_owner,
-        :radio_station_name, :recordingd_ates, :release_date, :release_time,
-        :set_subtitle, :sort_album, :sort_album_artist, :sort_artist, :sort_composer,
-        :sort_title, :tagging_time, :time, :title, :track_number, :ufid, :lyrics,
-        :version, :wwwartist, :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo,
-        :wwwpayment, :wwwpublisher, :wwwradio, :wwwsource]
+        :fileowner, :filetype, :grouping, :initial_key, :involved_people, :isrc,
+        :language, :lyricist, :mediatype, :mood, :musician_credits, :organization,
+        :original_album, :original_artist, :original_release_time, :original_year,
+        :popularimeter, :produced_notice, :radio_owner, :radio_station_name,
+        :recordingd_ates, :release_time, :set_subtitle, :sort_album,
+        :sort_album_artist, :sort_artist, :sort_composer, :sort_title,
+        :tagging_time, :time, :ufid, :lyrics, :version, :wwwartist,
+        :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo, :wwwpayment, :wwwpublisher,
+        :wwwradio, :wwwsource]
 
       AUDIO_PROPERTIES += [:copyrighted?, :layer, :original?, :protection_enabled, :version]
 
