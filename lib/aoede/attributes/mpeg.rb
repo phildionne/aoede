@@ -145,7 +145,14 @@ module Aoede
             raise StandardError, "Unrecognized MPEG frame id"
           end
 
-          audio.id3v2_tag.add_frame(frame)
+          if audio.id3v2_tag
+            audio.id3v2_tag.remove_frames(frame_id)
+            audio.id3v2_tag.add_frame(frame)
+          elsif audio.tag.respond_to?("#{method}=")
+            audio.tag.send("#{method}=", value)
+          else
+            raise StandardError, "Unrecognized attribute, value was not set"
+          end
         end
       end
       module_function :define_attribute_setter
