@@ -23,6 +23,9 @@ t.release_date #=> "2014"
 t.title        #=> "Mezmerise"
 t.track_number #=> "5/12"
 
+t.attributes
+# => { album: "Sun Structures", ... }
+
 t.audio_properties
 # => { bitrate: 320, channels: 2, length: 222, sample_rate: 44100, layer: 3, version: 0 }
 
