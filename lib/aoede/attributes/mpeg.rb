@@ -11,12 +11,11 @@ module Aoede
         :fileowner, :filetype, :grouping, :initial_key, :involved_people, :isrc,
         :language, :lyricist, :mediatype, :mood, :musician_credits, :organization,
         :original_album, :original_artist, :original_release_time, :original_year,
-        :popularimeter, :produced_notice, :radio_owner, :radio_station_name,
-        :recordingd_ates, :release_time, :set_subtitle, :sort_album,
-        :sort_album_artist, :sort_artist, :sort_composer, :sort_title,
-        :tagging_time, :time, :ufid, :lyrics, :version, :wwwartist,
-        :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo, :wwwpayment, :wwwpublisher,
-        :wwwradio, :wwwsource]
+        :produced_notice, :radio_owner, :radio_station_name, :recordingd_ates,
+        :release_time, :set_subtitle, :sort_album, :sort_album_artist, :sort_artist,
+        :sort_composer, :sort_title, :tagging_time, :time, :lyrics, :version,
+        :wwwartist, :wwwcommercialinfo, :wwwcopyright, :wwwfileinfo, :wwwpayment,
+        :wwwpublisher, :wwwradio, :wwwsource]
 
       AUDIO_PROPERTIES += [:copyrighted?, :layer, :original?, :protection_enabled, :version]
 
@@ -58,7 +57,6 @@ module Aoede
         original_artist: 'TOPE',
         original_release_time: 'TDOR',
         original_year: 'TORY',
-        popularimeter: 'POPM',
         produced_notice: 'TPRO',
         radio_owner: 'TRSO',
         radio_station_name: 'TRSN',
@@ -75,7 +73,6 @@ module Aoede
         time: 'TIME',
         title: 'TIT2',
         track_number: 'TRCK',
-        ufid: 'UFID',
         lyrics: 'USLT',
         version: 'TIT3',
         wwwartist: 'WOAR',
@@ -140,8 +137,6 @@ module Aoede
             frame = TagLib::ID3v2::PrivateFrame.new
             frame.text = value
           when /\ARVAD\z/
-            raise NotImplementedError
-          when /\AUFID\z/
             raise NotImplementedError
           when /\AUSLT\z/
             frame = TagLib::ID3v2::UnsynchronizedLyricsFrame.new
