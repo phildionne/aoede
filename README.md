@@ -64,7 +64,7 @@ t.delete_images
 
 ### Library
 
-Useful for working with multiple tracks.
+Useful for working with multiple tracks:
 
 ```ruby
 l = Aoede::Library.new("/Users/pdionne/Music/iTunes/iTunes Media/Music/")
