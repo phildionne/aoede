@@ -24,13 +24,24 @@ describe Aoede::Attributes::Flac do
 
   describe :InstanceMethods do
 
-    Aoede::Attributes::Flac::ATTRIBUTES.each do |method|
-      it "sets attribute '#{method}'" do
-        track.send("#{method}=", "value")
-        expect(track.send(method)).to eq("value")
+    Aoede::Attributes::Flac::ATTRIBUTES
+      .reject { |attr| attr == :release_date || attr == :track_number }
+      .each do |method|
+        it "sets attribute '#{method}'" do
+          track.send("#{method}=", "value")
+          expect(track.send(method)).to eq("value")
+        end
       end
+
+    describe :release_date= do
+      before { track.release_date = 2014 }
+      it { expect(track.release_date).to eq(2014) }
     end
 
+    describe :track_number= do
+      before { track.track_number = 1 }
+      it { expect(track.track_number).to eq(1) }
+    end
 
     describe :attributes do
       let(:attribute_hash) do

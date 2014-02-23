@@ -7,6 +7,14 @@ module Aoede
 
       AUDIO_PROPERTIES += [:sample_width, :signature]
 
+      def release_date=(value)
+        audio.tag.send("year=", value.to_i)
+      end
+
+      def track_number=(value)
+        audio.tag.send("track=", value.to_i)
+      end
+
       # @return [Array]
       def images
         audio.picture_list.map do |image|
