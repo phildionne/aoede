@@ -126,7 +126,7 @@ module Aoede
             frame = TagLib::ID3v2::TextIdentificationFrame.new(frame_id, TagLib::String::UTF8)
             frame.text = value
           when /\AW/
-            frame = TagLib::ID3v2::UserUrlLinkFrame.new
+            frame = TagLib::ID3v2::UserUrlLinkFrame.new(frame_id)
             frame.url = value
           when /\ACOMM\z/
             frame = TagLib::ID3v2::CommentsFrame.new
