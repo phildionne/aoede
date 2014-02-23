@@ -41,7 +41,7 @@ describe Aoede::Attributes::MP4 do
           composer: 'Composer',
           disc_number: '1/2',
           encoder: 'Encoder',
-          genre_user: 'Genre',
+          genre: 'Genre',
           grouping: 'Grouping',
           lyrics: 'Lyrics',
           release_date: '2014',

@@ -34,7 +34,7 @@ module Aoede
         episode_global_unique_id: 'egid',
         gapless_playback: 'pgap',
         genre_predefined: 'gnre',
-        genre_user: '©gen',
+        genre: '©gen',
         grouping: '©grp',
         lyrics: '©lyr',
         media_type: 'stik',
