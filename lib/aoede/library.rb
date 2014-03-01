@@ -20,8 +20,8 @@ module Aoede
     end
 
     # @param attributes [Hash]
-    def find_by(attributes = {})
     # @return [Array]
+    def select_by(attributes = {})
       tracks.select do |track|
         attributes.all? do |attribute, value|
           track.try(attribute) == value

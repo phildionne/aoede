@@ -10,7 +10,6 @@ describe Aoede::Library do
       it { expect(library.files.first).to be_a(String) }
 
       context "without a path" do
-
         it { expect { Aoede::Library.new.files }.to raise_error }
       end
     end
@@ -20,10 +19,11 @@ describe Aoede::Library do
       it { expect(library.tracks.first).to be_a(Aoede::Track) }
     end
 
-    describe :find_by do
-      it { expect(library.find_by(title: "Title").first).to be_a(Aoede::Track) }
-      it { expect(library.find_by(title: "Title").first.title).to eq("Title") }
+    describe :select_by do
       it { expect(library.select_by).to be_a(Array) }
+      it { expect(library.select_by(title: "Title").first).to be_a(Aoede::Track) }
+      it { expect(library.select_by(title: "Title").first.title).to eq("Title") }
+      it { expect(library.select_by(title: "Title", artist: "Artist").first.artist).to eq("Artist") }
     end
   end
 end
