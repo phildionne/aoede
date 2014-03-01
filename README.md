@@ -33,7 +33,7 @@ t.update(title: "Mesmerise")
 # => true
 ```
 
-Access the underlying TagLib::File:
+Access the underlying `TagLib::File`:
 
 ```ruby
 t.audio
