@@ -73,10 +73,10 @@ Useful for working with multiple tracks:
 l = Aoede::Library.new("/Users/pdionne/Music/iTunes/iTunes Media/Music/")
 
 l.files
-# => #<Enumerator::Lazy: ...>
+# => #<Array: ...>
 
 l.tracks
-# => #<Enumerator::Lazy: ...>
+# => #<Array: ...>
 ```
 
 ## Thanks
