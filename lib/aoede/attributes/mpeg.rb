@@ -157,17 +157,15 @@ module Aoede
       end
       module_function :define_attribute_setter
 
-      # @return [Array]
-      def images
-        frames = audio.id3v2_tag.frame_list('APIC')
-
-        frames.map do |image|
-          Aoede::Image.new(data: image.picture, mime_type: image.mime_type)
-        end
+      # @return [Image, Nil]
+      def image
+        return unless image = audio.id3v2_tag.frame_list('APIC').first
+        Aoede::Image.new(data: image.picture, mime_type: image.mime_type)
       end
 
       # @param image [Image]
-      def add_image(image)
+      # @return [Image]
+      def image=(image)
         frame = TagLib::ID3v2::AttachedPictureFrame.new
 
         frame.mime_type = image.mime_type
@@ -175,12 +173,14 @@ module Aoede
         frame.picture   = image.data
 
         audio.id3v2_tag.add_frame(frame)
+
+        image
       end
 
-      # Deletes all images
+      # Deletes the image
       #
       # @return [Boolean]
-      def delete_images
+      def delete_image
         frames = audio.id3v2_tag.frame_list('APIC')
         frames.all? do |frame|
           audio.id3v2_tag.remove_frame(frame)

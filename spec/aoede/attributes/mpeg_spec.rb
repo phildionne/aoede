@@ -90,32 +90,25 @@ describe Aoede::Attributes::MPEG do
       end
     end
 
-    describe :images do
-      it { expect(track.images).to be_a(Array) }
-      it { expect(track.images.first).to be_a(Aoede::Image) }
+    describe :image do
+      it { expect(track.image).to be_a(Aoede::Image) }
     end
 
-    describe :add_image do
+    describe :image= do
       let(:file) { File.new(File.expand_path('cover.jpeg', 'spec/support/')) }
       let(:image) { Aoede::Image.new(data: file.read, format: :jpeg) }
 
-      it "adds a new image" do
-        expect {
-          track.add_image(image)
-        }.to change(track.images, :count).by(1)
-      end
-
       it "adds the right image" do
-        track.add_image(image)
-        expect(track.images.last.data.b).to eq(image.data.b)
+        track.image = image
+        expect(track.image.data.b).to eq(image.data.b)
       end
     end
 
-    describe :delete_images do
+    describe :delete_image do
 
-      it "deletes all images" do
-        track.delete_images
-        expect(track.images).to be_empty
+      it "deletes the image" do
+        track.delete_image
+        expect(track.image).to be_nil
       end
     end
   end
