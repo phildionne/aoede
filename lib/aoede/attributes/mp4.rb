@@ -85,30 +85,30 @@ module Aoede
       end
       module_function :define_attribute_setter
 
-      # @return [Array]
-      def images
-        if item = audio.tag.item_list_map[MAPPING[:artwork]]
-          item.to_cover_art_list.map do |picture|
-            format = Aoede::Image::MP4_FORMAT_MAPPING.find { |k, v| v == picture.format }.first
-            Image.new(data: picture.data, format: format)
-          end
-        else
-          Array.new
-        end
+      # @return [Image, Nil]
+      def image
+        return unless item = audio.tag.item_list_map[MAPPING[:artwork]]
+
+        picture = item.to_cover_art_list.first
+        format = Aoede::Image::MP4_FORMAT_MAPPING.find { |k, v| v == picture.format }.first
+        Image.new(data: picture.data, format: format)
       end
 
       # @param image [Image]
-      def add_image(image)
+      # @return [Image]
+      def image=(image)
         picture = TagLib::MP4::CoverArt.new(Aoede::Image::MP4_FORMAT_MAPPING[image.format], image.data)
         item = TagLib::MP4::Item.from_cover_art_list([picture])
 
         audio.tag.item_list_map.insert(MAPPING[:artwork], item)
+
+        image
       end
 
-      # Deletes all images
+      # Deletes the image
       #
       # @return [Boolean]
-      def delete_images
+      def delete_image
         !!audio.tag.item_list_map.erase(MAPPING[:artwork])
       end
 
