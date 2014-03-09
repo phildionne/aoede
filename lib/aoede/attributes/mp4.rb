@@ -76,7 +76,11 @@ module Aoede
       # @param atom [String]
       def define_attribute_setter(method, atom)
         define_method("#{method}=") do |value|
-          audio.tag.item_list_map.insert(atom, TagLib::MP4::Item.from_string_list([value]))
+          if audio.tag
+            audio.tag.item_list_map.insert(atom, TagLib::MP4::Item.from_string_list([value]))
+          else
+            raise StandardError, "Audio file doesn't have a tag and value can't be set"
+          end
         end
       end
       module_function :define_attribute_setter
