@@ -10,7 +10,7 @@ A thin wrapper on top of [taglib-ruby](https://github.com/robinst/taglib-ruby) p
 
 ### Track
 
-Instantiating a new track automatically infers the underlying `TagLib::File` to use by looking at the filename. Currently these formats are supported: `mp4, m4a, oga, ogg, flac, mp3`
+Instantiating a new track automatically infers the underlying `TagLib::File` to use by looking at the filename. Currently these formats are supported: `mp3, mp4, m4a, m4p, m4b, m4r, m4v, oga, ogg, flac`
 
 ```ruby
 t = Aoede::Track.new("path-to/Temples - Mesmerise.mp3")
