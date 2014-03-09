@@ -15,15 +15,15 @@ module Aoede
         audio.tag.send("track=", value.to_i)
       end
 
-      # @return [Array]
-      def images
-        audio.picture_list.map do |image|
-          Aoede::Image.new(data: image.data, mime_type: image.mime_type, width: image.width, height: image.height)
-        end
+      # @return [Image, Nil]
+      def image
+        return unless image = audio.picture_list.first
+        Aoede::Image.new(data: image.data, mime_type: image.mime_type, width: image.width, height: image.height)
       end
 
       # @param image [Image]
-      def add_image(image)
+      # @return [Image]
+      def image=(image)
         picture = TagLib::FLAC::Picture.new
 
         picture.mime_type = image.mime_type
@@ -33,12 +33,14 @@ module Aoede
         picture.height    = image.height
 
         audio.add_picture(picture)
+
+        image
       end
 
-      # Deletes all images
+      # Deletes the images
       #
       # @return [Boolean]
-      def delete_images
+      def delete_image
         !!audio.remove_pictures
       end
 
