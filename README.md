@@ -1,5 +1,5 @@
 # Aoede
-A thin wrapper on top of [taglib-ruby](https://github.com/robinst/taglib-ruby) providing a consistent API to play with tracks.
+A thin wrapper on top of [taglib-ruby](https://github.com/robinst/taglib-ruby) providing a consistent API to play with audio tracks.
 
 [![Gem Version](https://badge.fury.io/rb/aoede.png)](http://badge.fury.io/rb/aoede)
 [![Code Climate](https://codeclimate.com/github/phildionne/aoede.png)](https://codeclimate.com/github/phildionne/aoede)
