@@ -77,6 +77,9 @@ l.files
 
 l.tracks
 # => #<Array: ...>
+
+l.select_by(album: /Sun/, year: 2013)
+# => #<Array: ...>
 ```
 
 ## Thanks

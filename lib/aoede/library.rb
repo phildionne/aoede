@@ -24,7 +24,13 @@ module Aoede
     def select_by(attributes = {})
       tracks.select do |track|
         attributes.all? do |attribute, value|
-          track.try(attribute) == value
+          result = track.try(attribute)
+
+          if value.is_a?(Regexp)
+            value.match(result.to_s)
+          else
+            result == value
+          end
         end
       end
     end
