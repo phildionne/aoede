@@ -80,17 +80,18 @@ describe Aoede::Attributes::Flac do
     end
 
     describe :image do
-      it { expect(track.image).to be_a(Aoede::Image) }
+      let(:file) { File.new(File.expand_path('cover.jpeg', 'spec/support/')) }
+      let(:image) { Aoede::Image.new(data: file.read, format: :jpeg) }
+
+      it_behaves_like "image getter"
     end
 
     describe :image= do
       let(:file) { File.new(File.expand_path('cover.jpeg', 'spec/support/')) }
-      let(:image) { Aoede::Image.new(data: file.read, format: :jpeg) }
+      let(:image) { Aoede::Image.new(data: file.read, format: :jpeg, width: 200, height: 200) }
+      let(:other_image) { Aoede::Image.new(data: file.read, format: :jpeg) }
 
-      it "adds the right image" do
-        track.image = image
-        expect(track.image.data.b).to eq(image.data.b)
-      end
+      it_behaves_like "image setter"
     end
 
     describe :delete_image do

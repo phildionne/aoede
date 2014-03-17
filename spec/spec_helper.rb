@@ -7,6 +7,7 @@ require 'rspec'
 require 'aoede'
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].map(&method(:require))
+Dir["#{File.dirname(__FILE__)}/shared/**/*.rb"].map(&method(:require))
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
