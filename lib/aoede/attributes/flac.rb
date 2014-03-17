@@ -24,8 +24,9 @@ module Aoede
       # @param image [Image]
       # @return [Image]
       def image=(image)
-        picture = TagLib::FLAC::Picture.new
+        raise ArgumentError, "Image width and height must be present" unless image.width.present? && image.height.present?
 
+        picture = TagLib::FLAC::Picture.new
         picture.mime_type = image.mime_type
         picture.type      = TagLib::FLAC::Picture::FrontCover
         picture.data      = image.data

@@ -81,7 +81,7 @@ describe Aoede::Attributes::Flac do
 
     describe :image do
       let(:file) { File.new(File.expand_path('cover.jpeg', 'spec/support/')) }
-      let(:image) { Aoede::Image.new(data: file.read, format: :jpeg) }
+      let(:image) { Aoede::Image.new(data: file.read, format: :jpeg, width: 200, height: 200) }
 
       it_behaves_like "image getter"
     end
@@ -89,7 +89,7 @@ describe Aoede::Attributes::Flac do
     describe :image= do
       let(:file) { File.new(File.expand_path('cover.jpeg', 'spec/support/')) }
       let(:image) { Aoede::Image.new(data: file.read, format: :jpeg, width: 200, height: 200) }
-      let(:other_image) { Aoede::Image.new(data: file.read, format: :jpeg) }
+      let(:other_image) { Aoede::Image.new(data: file.read, format: :jpeg, width: 200, height: 200) }
 
       it_behaves_like "image setter"
     end
