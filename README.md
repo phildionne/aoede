@@ -40,7 +40,7 @@ t.audio
 # => #<TagLib::MPEG::File:0x007fa1b1b76290 @__swigtype__="_p_TagLib__MPEG__File">
 ```
 
-__Note:__ Pass `audio_properties: false` for faster initialization, see [http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize](http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize)
+__Note:__ Pass `audio_properties: false` for faster initialization, [read more](http://rubydoc.info/gems/taglib-ruby/TagLib/FileRef:initialize).
 
 
 ### Image
