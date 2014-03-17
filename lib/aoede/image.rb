@@ -34,7 +34,7 @@ module Aoede
     # @return [String, Nil]
     def format
       return @format if @format
-      mime_type.sub(/image\//, '') if mime_type
+      @format = mime_type.sub(/image\//, '') if mime_type
     end
 
     # @param format [String, Symbol]
@@ -46,7 +46,7 @@ module Aoede
     # @return [String, Nil]
     def mime_type
       return @mime_type if @mime_type
-      "image/#{format}" if format
+      @mime_type = "image/#{format}" if format
     end
 
     # @return [Hash]
