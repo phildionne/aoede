@@ -52,15 +52,16 @@ f = File.new("path-to/cover.jpeg")
 i = Aoede::Image.new(data: f.read, format: :jpeg, width: 200, height: 200)
 
 # Adding an image
-t.add_image(i)
-# =>
+t.image = i
+# => #<Aoede::Image ...>
 
-t.save
-t.images
-# =>
+t.save # The underlying file must be saved in order to persist an image assignation
+t.image
+t.image.data.b == i.data.b
+# => true
 
-# Deleting all images
-t.delete_images
+# Deletes the image
+t.delete_image
 # => true
 ```
 
