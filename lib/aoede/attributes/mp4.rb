@@ -87,11 +87,13 @@ module Aoede
 
       # @return [Image, Nil]
       def image
-        return unless item = audio.tag.item_list_map[MAPPING[:artwork]]
+        return @image if @image
 
-        picture = item.to_cover_art_list.first
-        format = Aoede::Image::MP4_FORMAT_MAPPING.find { |k, v| v == picture.format }.first
-        Image.new(data: picture.data, format: format)
+        if item = audio.tag.item_list_map[MAPPING[:artwork]]
+          picture = item.to_cover_art_list.first
+          format = Aoede::Image::MP4_FORMAT_MAPPING.find { |k, v| v == picture.format }.first
+          @image = Image.new(data: picture.data, format: format)
+        end
       end
 
       # @param image [Image]
@@ -100,7 +102,9 @@ module Aoede
         picture = TagLib::MP4::CoverArt.new(Aoede::Image::MP4_FORMAT_MAPPING[image.format], image.data)
         item = TagLib::MP4::Item.from_cover_art_list([picture])
 
-        audio.tag.item_list_map.insert(MAPPING[:artwork], item)
+        if delete_image && audio.tag.item_list_map.insert(MAPPING[:artwork], item)
+          @image = image
+        end
 
         image
       end
@@ -109,6 +113,7 @@ module Aoede
       #
       # @return [Boolean]
       def delete_image
+        @image = nil
         !!audio.tag.item_list_map.erase(MAPPING[:artwork])
       end
 

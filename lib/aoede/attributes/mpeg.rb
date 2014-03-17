@@ -159,8 +159,11 @@ module Aoede
 
       # @return [Image, Nil]
       def image
-        return unless image = audio.id3v2_tag.frame_list('APIC').first
-        Aoede::Image.new(data: image.picture, mime_type: image.mime_type)
+        return @image if @image
+
+        if image = audio.id3v2_tag.frame_list('APIC').first
+          @image = Aoede::Image.new(data: image.picture, mime_type: image.mime_type)
+        end
       end
 
       # @param image [Image]
@@ -172,7 +175,9 @@ module Aoede
         frame.type      = TagLib::ID3v2::AttachedPictureFrame::FrontCover
         frame.picture   = image.data
 
-        audio.id3v2_tag.add_frame(frame)
+        if delete_image && audio.id3v2_tag.add_frame(frame)
+          @image = image
+        end
 
         image
       end
@@ -181,10 +186,9 @@ module Aoede
       #
       # @return [Boolean]
       def delete_image
+        @image = nil
         frames = audio.id3v2_tag.frame_list('APIC')
-        frames.all? do |frame|
-          audio.id3v2_tag.remove_frame(frame)
-        end
+        frames.all? { |frame| audio.id3v2_tag.remove_frame(frame) }
       end
 
       # Define module attributes getters and setters dynamically

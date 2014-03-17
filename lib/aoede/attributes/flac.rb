@@ -17,8 +17,11 @@ module Aoede
 
       # @return [Image, Nil]
       def image
-        return unless image = audio.picture_list.first
-        Aoede::Image.new(data: image.data, mime_type: image.mime_type, width: image.width, height: image.height)
+        return @image if @image
+
+        if image = audio.picture_list.first
+          @image = Aoede::Image.new(data: image.data, mime_type: image.mime_type, width: image.width, height: image.height)
+        end
       end
 
       # @param image [Image]
@@ -33,7 +36,9 @@ module Aoede
         picture.width     = image.width
         picture.height    = image.height
 
-        audio.add_picture(picture)
+        if delete_image && audio.add_picture(picture)
+          @image = image
+        end
 
         image
       end
@@ -42,6 +47,7 @@ module Aoede
       #
       # @return [Boolean]
       def delete_image
+        @image = nil
         !!audio.remove_pictures
       end
 
