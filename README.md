@@ -72,7 +72,7 @@ Useful for working with multiple tracks:
 ```ruby
 l = Aoede::Library.new("/Users/pdionne/Music/iTunes/iTunes Media/Music/")
 
-l.files
+l.filenames
 # => #<Array: ...>
 
 l.tracks

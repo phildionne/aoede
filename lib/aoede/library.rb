@@ -9,14 +9,14 @@ module Aoede
     end
 
     # @return [Array]
-    def files
+    def filenames
       raise ArgumentError, "Invalid path '#{path}'" unless path.present? && File.directory?(path)
       Dir.glob(File.join(path, "/**/*.{mp3,mp4,m4a,m4p,m4b,m4r,m4v,oga,ogg,flac}"))
     end
 
     # @return [Array]
     def tracks
-      files.map { |file| Aoede::Track.new(file) }
+      filenames.map { |file| Aoede::Track.new(file) }
     end
 
     # @param attributes [Hash]
